@@ -13,6 +13,7 @@ def create_user(
     email: str,
     role: str = "user",
     send_welcome_email: bool = True,
+    audit_source: str = "web",
 ) -> User:
     """Create a user with an explicitly selectable role."""
     return User(name=name, email=email, role=role)
