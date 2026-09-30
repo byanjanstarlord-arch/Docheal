@@ -1,0 +1,63 @@
+name: DocHeal
+description: Detect and safely repair technical documentation made stale by Python changes.
+author: DocHeal contributors
+branding:
+  icon: book-open
+  color: blue
+inputs:
+  openai_api_key:
+    description: OpenAI API key used for embeddings and structured analysis.
+    required: true
+  github_token:
+    description: GitHub token with pull-request write access and contents write access when auto-fix is enabled.
+    required: true
+  config_path:
+    description: Optional repository-relative YAML configuration path.
+    required: false
+  llm_model:
+    description: OpenAI model used for verification, repair, and validation.
+    required: false
+    default: gpt-4.1-mini
+  embedding_model:
+    description: OpenAI embedding model.
+    required: false
+    default: text-embedding-3-small
+  confidence_threshold:
+    description: Minimum combined confidence for an automatic documentation fix.
+    required: false
+    default: "0.90"
+  semantic_similarity_threshold:
+    description: Minimum cosine similarity for a semantic code-documentation link.
+    required: false
+    default: "0.80"
+  auto_fix_enabled:
+    description: Create a separate documentation repair PR when every quality gate passes.
+    required: false
+    default: "false"
+  source_directories:
+    description: Comma-separated source paths in the consumer repository.
+    required: false
+    default: src
+  documentation_paths:
+    description: Comma-separated documentation paths or Markdown files.
+    required: false
+    default: docs,README.md
+outputs:
+  sections_checked:
+    description: Number of candidate documentation sections verified.
+  stale_sections:
+    description: Number of stale sections confirmed.
+  repairs_generated:
+    description: Number of targeted repairs generated.
+  repairs_validated:
+    description: Number of repairs that passed independent validation.
+  human_review_items:
+    description: Number of findings requiring human review.
+  created_pr_url:
+    description: URL of the documentation repair PR, when one was created.
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - github-action
+

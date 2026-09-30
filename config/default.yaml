@@ -1,0 +1,24 @@
+source:
+  include: ["src"]
+  exclude: ["tests", ".venv", "venv"]
+  language: python
+documentation:
+  include: ["docs", "README.md"]
+embeddings:
+  model: text-embedding-3-small
+  similarity_threshold: 0.80
+  collection: docheal
+llm:
+  model: gpt-4.1-mini
+  temperature: 0.0
+  timeout_seconds: 60
+decision:
+  auto_fix_threshold: 0.90
+  human_review_threshold: 0.70
+github:
+  auto_fix_enabled: false
+  branch_prefix: docheal/fix
+index:
+  path: .docheal/index.json
+  chroma_path: .docheal/chroma
+
