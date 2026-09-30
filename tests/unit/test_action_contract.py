@@ -11,4 +11,4 @@ def test_action_contract_and_workflow_permissions():
     assert action["inputs"]["openai_api_key"]["required"] is True
     assert {"sections_checked", "stale_sections", "created_pr_url"} <= set(action["outputs"])
     workflow = yaml.safe_load((ROOT / ".github" / "workflows" / "demo.yml").read_text(encoding="utf-8"))
-    assert workflow["permissions"] == {"contents": "write", "pull-requests": "write"}
+    assert workflow["permissions"] == {"contents": "read", "pull-requests": "write"}
