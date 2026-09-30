@@ -22,5 +22,5 @@ jobs:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           github_token: ${{ github.token }}
           auto_fix_enabled: "false"
-          source_directories: src
-          documentation_paths: docs,README.md
+          source_directories: demo/repository/src
+          documentation_paths: demo/repository/docs,demo/repository/README.md
