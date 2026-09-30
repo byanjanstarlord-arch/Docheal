@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
@@ -21,6 +21,6 @@ jobs:
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           github_token: ${{ github.token }}
-          auto_fix_enabled: "true"
+          auto_fix_enabled: "false"
           source_directories: src
           documentation_paths: docs,README.md
