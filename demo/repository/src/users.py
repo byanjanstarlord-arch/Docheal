@@ -8,7 +8,12 @@ class User:
     role: str = "user"
 
 
-def create_user(name: str, email: str, role: str = "user") -> User:
+def create_user(
+    name: str,
+    email: str,
+    role: str = "user",
+    send_welcome_email: bool = True,
+) -> User:
     """Create a user with an explicitly selectable role."""
     return User(name=name, email=email, role=role)
 
